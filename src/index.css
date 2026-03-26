@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #00d2ff; /* Bleu électrique InnoVibe */
+  --color-secondary: #3a7bd5;
+  --color-dark: #05070a;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-dark text-slate-300 antialiased;
+  }
+}
+
+/* Animation de gradient en arrière-plan */
+.bg-glow {
+  background: radial-gradient(circle at 50% -20%, rgba(0, 210, 255, 0.15), transparent 80%);
+}
+
+.glass-card {
+  @apply bg-white/5 border border-white/10 backdrop-blur-md hover:border-primary/50 transition-all duration-500;
+}
