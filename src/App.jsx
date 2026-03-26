@@ -261,7 +261,7 @@ export default function Portfolio() {
     <div className="min-h-screen bg-glow font-sans">
       {/* --- NAVIGATION --- */}
       <nav className="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center backdrop-blur-md border-b border-white/5">
-        <span className="text-xl font-bold tracking-tighter text-white uppercase">INTISSAR<span className="text-primary">.M</span></span>
+        <span className="text-xl font-bold tracking-tighter text-white uppercase">INTISSAR<span className="text-primary">.Massaoud</span></span>
         <div className="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
           <a href="#projets" className="hover:text-primary transition-colors">Projets</a>
           <a href="#expertise" className="hover:text-primary transition-colors">Expertise</a>
@@ -286,7 +286,7 @@ export default function Portfolio() {
             Stage d'Été 2026 • Ingénierie Logiciel & IA
           </motion.div>
           
-          <motion.h1 
+          {/* <motion.h1 
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             className="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-[0.9]"
@@ -306,14 +306,55 @@ export default function Portfolio() {
             <p className="text-white font-bold text-2xl md:text-5xl tracking-tighter leading-tight">
               L'IA <span className="text-primary">Full-stack</span> au service de <span className="bg-gradient-to-r from-primary to-secondary bg-[length:100%_3px] bg-no-repeat bg-bottom pb-1">vos décisions.</span>
             </p>
-          </motion.div>
+          </motion.div> */}
+          <motion.h1  
+  initial={{ opacity: 0, y: 20 }} 
+  animate={{ opacity: 1, y: 0 }} 
+  className="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-[0.9]"
+>
+  INNOVER. APPRENDRE. IMPACTER. <br /> 
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary">
+    CRÉER DE LA VALEUR INTELLIGENTE.
+  </span>
+</motion.h1>
+
+<motion.div 
+  initial={{ opacity: 0 }} 
+  animate={{ opacity: 1 }} 
+  transition={{ delay: 0.2 }} 
+  className="max-w-2xl mx-auto lg:mx-0 space-y-6 text-base md:text-xl mb-14"
+>
+  <p className="text-slate-400 italic border-l-2 border-primary/30 pl-4 hidden md:block">
+    "Apprendre vite, expérimenter mieux, transformer durablement."
+  </p>
+
+  <p className="text-white font-medium">
+    Future ingénieure à l'ISIMS Sfax, je m'inscris dans une démarche continue 
+    d'<span className="text-primary font-bold">apprentissage rapide et d'innovation appliquée</span>, 
+    avec un objectif clair : créer des solutions utiles, évolutives et orientées impact.
+  </p>
+
+  <p className="text-white font-medium">
+    Intégrer votre entreprise, c’est vous apporter un profil 
+    <span className="text-primary font-bold">curieux, adaptable et orienté résultats</span>, 
+    capable d’explorer de nouvelles approches et de transformer vos problématiques en 
+    opportunités concrètes.
+  </p>
+
+  <p className="text-white font-bold text-2xl md:text-5xl tracking-tighter leading-tight">
+    Une <span className="text-primary">IA Full-stack</span> qui apprend vite, 
+    pour <span className="bg-gradient-to-r from-primary to-secondary bg-[length:100%_3px] bg-no-repeat bg-bottom pb-1">
+      accélérer votre performance.
+    </span>
+  </p>
+</motion.div>
 
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-6">
             <a href="#projets" className="bg-white text-dark px-10 py-4 rounded-full font-bold hover:scale-105 transition-all flex items-center justify-center gap-2 shadow-2xl shadow-primary/30">
-              Mes travaux <ArrowRight size={18} />
+              Envoyer email <ArrowRight size={18} />
             </a>
-            <a href="/cv-intissar.pdf" target="_blank" className="bg-dark text-white px-10 py-4 rounded-full font-bold hover:bg-white/5 transition-all flex items-center justify-center gap-2 border border-white/10">
-              Consulter mon profil <Layout size={18} />
+            <a href="/CV_Intissar_Massaoud.pdf" target="_blank" className="bg-dark text-white px-10 py-4 rounded-full font-bold hover:bg-white/5 transition-all flex items-center justify-center gap-2 border border-white/10">
+              Consulter mon CV <Layout size={18} />
             </a>
           </div>
         </div>
