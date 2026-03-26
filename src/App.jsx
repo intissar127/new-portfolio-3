@@ -41,12 +41,18 @@ function ParticleField() {
     </points>
   );
 }
-
 function HeroBackground() {
   return (
-    <div className="absolute inset-0 -z-10">
-      <Canvas camera={{ position: [0, 0, 5] }}>
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full -z-10 overflow-hidden pointer-events-none">
+      <Canvas 
+        camera={{ position: [0, 0, 5] }}
+        // On force le Canvas à ignorer les limites CSS du parent
+        style={{ width: '100vw', height: '100%' }}
+        gl={{ antialias: true }}
+      >
         <ParticleField />
+        {/* Ajoute une lumière si nécessaire pour tes composants */}
+        <ambientLight intensity={0.5} />
       </Canvas>
     </div>
   );
@@ -270,101 +276,102 @@ export default function Portfolio() {
       </nav>
 
       {/* --- HERO SECTION AVEC THREE.JS --- */}
-      <section className="relative pt-32 pb-16 md:pt-48 md:pb-32 px-6 max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20 overflow-hidden">
-        <HeroBackground />
-        
-        <div className="flex-1 text-center lg:text-left z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }} 
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black tracking-widest mb-10 uppercase"
-          >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
-            </span>
-            Stage d'Été 2026 • Ingénierie Logiciel & IA
-          </motion.div>
-          
-          {/* <motion.h1 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            className="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-[0.9]"
-          >
-            CONSTRUIRE L'IMPACT <br /> 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary">PAR L'INTELLIGENCE.</span>
-          </motion.h1>
-
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="max-w-2xl mx-auto lg:mx-0 space-y-6 text-base md:text-xl mb-14">
-            <p className="text-slate-400 italic border-l-2 border-primary/30 pl-4 hidden md:block">
-              "Dans un monde submergé de données, la complexité est une opportunité de conception."
-            </p>
-            <p className="text-white font-medium">
-              Future ingénieure à l'ISIMS Sfax, je ne me contente pas d'écrire du code : 
-              <span className="text-primary font-bold"> je transforme vos défis en leviers de croissance.</span> 
-            </p>
-            <p className="text-white font-bold text-2xl md:text-5xl tracking-tighter leading-tight">
-              L'IA <span className="text-primary">Full-stack</span> au service de <span className="bg-gradient-to-r from-primary to-secondary bg-[length:100%_3px] bg-no-repeat bg-bottom pb-1">vos décisions.</span>
-            </p>
-          </motion.div> */}
-          <motion.h1  
-  initial={{ opacity: 0, y: 20 }} 
-  animate={{ opacity: 1, y: 0 }} 
-  className="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-[0.9]"
->
-  INNOVER. APPRENDRE. <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary">IMPACTER. </span> <br /> 
+      {/* --- HERO SECTION OPTIMISÉE (NO SCROLL & PHOTO COMPACTE) --- */}
+{/* --- HERO SECTION ULTRA-COMPACTE (NO SCROLL & PHOTO MINIMALISTE) --- */}
+<section className="relative min-h-[100dvh] pt-20 pb-6 md:pt-28 md:pb-12 px-5 max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-0 overflow-hidden">
   
+  {/* Animation de fond Three.js (Garder ton composant ici) */}
+  <div className="fixed inset-0 -z-10">
+  <HeroBackground />
+</div>
+  
+  {/* --- 1. BLOC TEXTE (ULTRA-COMPACT POUR GAIN DE PLACE) --- */}
+  <div className="flex-1 text-center lg:text-left z-10 flex flex-col justify-center">
     
-  
-</motion.h1>
-
-<motion.div 
-  initial={{ opacity: 0 }} 
-  animate={{ opacity: 1 }} 
-  transition={{ delay: 0.2 }} 
-  className="max-w-2xl mx-auto lg:mx-0 space-y-6 text-base md:text-xl mb-14"
+    {/* Badge d'état (Masqué sur mobile pour le gain de place "No Scroll") */}
+    <motion.div 
+  initial={{ opacity: 0, y: 10 }} 
+  animate={{ opacity: 1, y: 0 }}
+  className="hidden sm:inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] font-black tracking-[0.1em] mb-4 uppercase self-center lg:self-start"
 >
-  <p className="text-slate-400 italic border-l-2 border-primary/30 pl-4 hidden md:block">
-    "Apprendre vite, expérimenter mieux, créer de la valeur."
-  </p>
+  <span className="relative flex h-2 w-2">
+    <span className="animate-ping absolute h-full w-full rounded-full bg-primary opacity-75"></span>
+    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+  </span>
+  Stage d'Été 2026 • Ingénierie Logiciel & IA
+</motion.div>
+    
+    {/* Titre (Taille très réduite sur mobile pour gain de place) */}
+    <motion.h1 
+      initial={{ opacity: 0, y: 15 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      className="text-3xl sm:text-5xl md:text-7xl xl:text-8xl font-black text-white mb-3 md:mb-6 tracking-tighter leading-[0.95]"
+    >
+      INNOVER. APPRENDRE. <br />
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary">IMPACTER.</span>
+    </motion.h1>
 
-  <p className="text-white font-medium">
-    Future ingénieure à l'ISIMS Sfax, je m'inscris dans une démarche continue 
-    d'<span className="text-primary font-bold">apprentissage rapide et d'innovation appliquée</span>, 
-    avec un objectif clair : <span className="text-primary font-bold">transformer vos problématiques en opportunités concrètes.</span>
-  </p>
+    {/* Description (Marges et tailles réduites au minimum) */}
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ delay: 0.2 }} 
+      className="max-w-xl mx-auto lg:mx-0 space-y-2 text-xs md:text-lg mb-6 md:mb-10 leading-relaxed"
+    >
+      <p className="text-slate-400 italic border-l border-primary/30 pl-3 hidden md:block">
+        "Apprendre vite, expérimenter mieux, créer de la valeur."
+      </p>
 
-  {/* <p className="text-white font-medium">
-    Intégrer votre entreprise, c’est vous apporter un profil 
-    <span className="text-primary font-bold">curieux, adaptable et orienté résultats</span>, 
-    capable d’explorer de nouvelles approches et de transformer vos problématiques en 
-    opportunités concrètes.
-  </p> */}
+      <p className="text-white font-medium">
+        Future ingénieure à l'ISIMS Sfax, je m'inscris dans une démarche d'<span className="text-primary font-bold">apprentissage rapide et d'innovation appliquée</span>, pour <span className="text-primary font-bold">transformer vos problématiques en opportunités concrètes.</span>
+      </p>
+    </motion.div>
 
-  
+    {/* Boutons d'action (Position remontée pour être visible direct) */}
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3 }}
+      className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 md:gap-5"
+    >
+      <a href="mailto:messoudintissar127@gmail.com" className="bg-white text-dark px-6 py-2.5 md:px-9 md:py-3.5 rounded-full font-bold hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-2xl shadow-primary/30 text-xs md:text-base">
+        Me contacter <ArrowRight size={16} />
+      </a>
+      <a href="/CV_Intissar_Massaoud.pdf" target="_blank" className="bg-dark text-white px-6 py-2.5 md:px-9 md:py-3.5 rounded-full font-bold hover:bg-white/5 transition-all flex items-center justify-center gap-2 border border-white/10 text-xs md:text-base">
+        Consulter mon CV <Layout size={16} />
+      </a>
+    </motion.div>
+  </div>
+
+  {/* --- 2. BLOC PHOTO (ULTRA-MINIMALISTE + HOVER ADOUCI) --- */}
+  <motion.div 
+  initial={{ opacity: 0, scale: 0.9 }} 
+  animate={{ opacity: 1, scale: 1 }} 
+  transition={{ delay: 0.2, duration: 0.5 }}
+  className="relative group w-full max-w-[160px] sm:max-w-[200px] lg:max-w-[260px] z-10 flex-shrink-0"
+>
+   <div className="absolute -inset-3 md:-inset-6 bg-gradient-to-r from-primary to-secondary blur-[40px] md:blur-[80px] rounded-full opacity-25 group-hover:opacity-50 transition-opacity duration-700" />
+   
+   <div className="relative glass-card p-2 md:p-3 rounded-[20px] md:rounded-[30px] border-white/10 shadow-2xl overflow-hidden group-hover:border-primary/40 transition-all duration-500">
+      <img 
+        src="/img/photo-intissar.jpg" 
+        alt="Intissar Massaoud" 
+        className="w-full aspect-[4/5] object-cover rounded-[14px] md:rounded-[24px] transform group-hover:scale-105 transition-transform duration-700 ease-out"
+      />
+      
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[85%] p-2 rounded-lg bg-dark/90 backdrop-blur-md border border-white/10 text-center shadow-2xl">
+    <h4 className="text-white text-[9px] md:text-[11px] font-bold uppercase tracking-tight leading-none">
+      Intissar Massaoud
+    </h4>
+    <p className="text-primary text-[5px] md:text-[7px] font-black uppercase tracking-[0.15em] mt-1 mx-auto leading-tight">
+      Software & AI Engineer
+    </p>
+</div>
+      
+   </div>
 </motion.div>
 
-          <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-6">
-            <a href="#projets" className="bg-white text-dark px-10 py-4 rounded-full font-bold hover:scale-105 transition-all flex items-center justify-center gap-2 shadow-2xl shadow-primary/30">
-              Envoyer email <ArrowRight size={18} />
-            </a>
-            <a href="/CV_Intissar_Massaoud.pdf" target="_blank" className="bg-dark text-white px-10 py-4 rounded-full font-bold hover:bg-white/5 transition-all flex items-center justify-center gap-2 border border-white/10">
-              Consulter mon CV <Layout size={18} />
-            </a>
-          </div>
-        </div>
-
-        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="relative group w-full max-w-lg">
-           <div className="absolute -inset-10 bg-gradient-to-r from-primary to-secondary blur-[120px] rounded-full opacity-40" />
-           <div className="relative glass-card p-4 rounded-[40px] border-white/10 shadow-2xl overflow-hidden">
-              <img src="/img/photo-intissar.jpg" alt="Intissar" className="w-full aspect-[4/5] object-cover rounded-[32px]" />
-              <div className="absolute bottom-8 left-8 right-8 p-5 rounded-3xl bg-dark/80 backdrop-blur-md border border-white/10 text-center">
-                  <h4 className="text-white text-lg font-bold uppercase">Intissar Massaoud</h4>
-                  <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mt-1">Monastir, Tunisie • Software & AI</p>
-              </div>
-           </div>
-        </motion.div>
-      </section>
+</section>
 
       {/* --- PROJECTS GRID --- */}
       <section id="projets" className="py-24 px-6 max-w-7xl mx-auto">

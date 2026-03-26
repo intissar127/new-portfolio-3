@@ -21,3 +21,14 @@
 .glass-card {
   @apply bg-white/5 border border-white/10 backdrop-blur-md hover:border-primary/50 transition-all duration-500;
 }
+/* À ajouter dans ton fichier CSS global ou une balise <style> */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
+}
