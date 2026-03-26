@@ -312,10 +312,10 @@ export default function Portfolio() {
   animate={{ opacity: 1, y: 0 }} 
   className="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-[0.9]"
 >
-  INNOVER. APPRENDRE. IMPACTER. <br /> 
-  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary">
-    CRÉER DE LA VALEUR INTELLIGENTE.
-  </span>
+  INNOVER. APPRENDRE. <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary">IMPACTER. </span> <br /> 
+  
+    
+  
 </motion.h1>
 
 <motion.div 
@@ -325,28 +325,23 @@ export default function Portfolio() {
   className="max-w-2xl mx-auto lg:mx-0 space-y-6 text-base md:text-xl mb-14"
 >
   <p className="text-slate-400 italic border-l-2 border-primary/30 pl-4 hidden md:block">
-    "Apprendre vite, expérimenter mieux, transformer durablement."
+    "Apprendre vite, expérimenter mieux, créer de la valeur."
   </p>
 
   <p className="text-white font-medium">
     Future ingénieure à l'ISIMS Sfax, je m'inscris dans une démarche continue 
     d'<span className="text-primary font-bold">apprentissage rapide et d'innovation appliquée</span>, 
-    avec un objectif clair : créer des solutions utiles, évolutives et orientées impact.
+    avec un objectif clair : <span className="text-primary font-bold">transformer vos problématiques en opportunités concrètes.</span>
   </p>
 
-  <p className="text-white font-medium">
+  {/* <p className="text-white font-medium">
     Intégrer votre entreprise, c’est vous apporter un profil 
     <span className="text-primary font-bold">curieux, adaptable et orienté résultats</span>, 
     capable d’explorer de nouvelles approches et de transformer vos problématiques en 
     opportunités concrètes.
-  </p>
+  </p> */}
 
-  <p className="text-white font-bold text-2xl md:text-5xl tracking-tighter leading-tight">
-    Une <span className="text-primary">IA Full-stack</span> qui apprend vite, 
-    pour <span className="bg-gradient-to-r from-primary to-secondary bg-[length:100%_3px] bg-no-repeat bg-bottom pb-1">
-      accélérer votre performance.
-    </span>
-  </p>
+  
 </motion.div>
 
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-6">
