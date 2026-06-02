@@ -561,7 +561,7 @@ export default function Portfolio() {
 
                 {[
 
-                  { name: 'LinkedIn', icon: <Globe size={18} />, url: 'https://linkedin.com/in/intissar-massaoud' },
+                  { name: 'LinkedIn', icon: <Globe size={18} />, url: 'https://www.linkedin.com/in/massaoud-intissar-789417250/' },
 
                   { name: 'GitHub', icon: <GitBranch size={18} />, url: 'https://github.com/intissar127' },
 
