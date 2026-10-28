@@ -5,37 +5,33 @@ import {
   GitBranch, 
   ExternalLink, 
   Cpu, 
-  Globe, 
-  Rocket, 
   ArrowRight, 
-  Layout, 
-  Database, 
-  Terminal, 
-  Layers,
-  CalendarCheck,
-  ShoppingBag,
-  Sparkles,
-  Brain,
-  ShieldCheck,
+  Sparkles, 
+  Brain, 
+  ShieldCheck, 
   GraduationCap,
   Mail,
-  FileText
+  FileText,
+  Terminal,
+  Layers,
+  Code2
 } from 'lucide-react';
 import TechGlobe from './TechGlobe';
 
-// --- THREE.JS PARTICLE FIELD ---
+// --- SUBTLE CODE MATRIX BACKGROUND ---
 function ParticleField() {
   const points = useRef();
   const particles = useMemo(() => {
     const temp = [];
-    for (let i = 0; i < 2000; i++) {
-      temp.push((Math.random() - 0.5) * 15, (Math.random() - 0.5) * 15, (Math.random() - 0.5) * 15);
+    for (let i = 0; i < 1500; i++) {
+      temp.push((Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20);
     }
     return new Float32Array(temp);
   }, []);
 
   useFrame((state) => {
-    points.current.rotation.y = state.clock.getElapsedTime() * 0.03;
+    points.current.rotation.y = state.clock.getElapsedTime() * 0.02;
+    points.current.rotation.x = state.clock.getElapsedTime() * 0.01;
   });
 
   return (
@@ -43,17 +39,17 @@ function ParticleField() {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" count={particles.length / 3} array={particles} itemSize={3} />
       </bufferGeometry>
-      <pointsMaterial size={0.02} color="#00ffff" transparent opacity={0.35} sizeAttenuation />
+      <pointsMaterial size={0.025} color="#00ffff" transparent opacity={0.25} sizeAttenuation />
     </points>
   );
 }
 
 function HeroBackground() {
   return (
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full -z-10 overflow-hidden pointer-events-none opacity-60">
-      <Canvas camera={{ position: [0, 0, 6] }} style={{ width: '100vw', height: '100%' }} gl={{ antialias: true }}>
+    <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+      <Canvas camera={{ position: [0, 0, 7] }} style={{ width: '100vw', height: '100%' }} gl={{ antialias: true }}>
         <ParticleField />
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.4} />
       </Canvas>
     </div>
   );
@@ -66,54 +62,36 @@ const projects = [
     category: "IA & Recherche",
     title: "Pipeline de Traduction de la Langue des Signes",
     description: "Pipeline vidéo-texte de niveau phrase (ASL vers anglais) basé sur OpenASL, OpenCV, FFmpeg, recadrage du signataire, détection YOLO, baseline VLM / sequence-to-sequence, et évaluation BLEU/chrF avec intégration LangGraph.",
-    skills: [{ name: "Python" }, { name: "OpenCV" }, { name: "YOLO" }, { name: "LangGraph" }, { name: "PyTorch" }],
+    skills: ["Python", "OpenCV", "YOLO", "LangGraph", "PyTorch"],
     github: "https://github.com/intissar127",
-    icon: <Brain size={22} />
+    icon: <Brain size={20} />
   },
   {
     id: 9,
     category: "IA & Healthcare",
     title: "Projet PixVoice — Pixemantic",
     description: "Pipeline RAG médical (multilingual-e5-base, FAISS, CrossEncoder), chunking, spaCy NER, génération de notes SOAP, et fine-tuning de Whisper Large V2 avec QLoRA/PEFT (WER de 13,9%), Flask & React.",
-    skills: [{ name: "Whisper" }, { name: "FAISS" }, { name: "QLoRA" }, { name: "Flask" }, { name: "React" }],
+    skills: ["Whisper", "FAISS", "QLoRA", "Flask", "React"],
     github: "https://github.com/intissar127",
-    icon: <Cpu size={22} />
+    icon: <Cpu size={20} />
   },
   {
     id: 8,
     category: "IA & LLM",
     title: "Projet FinDef — FinansyaLab",
     description: "Application de l'apprentissage par instructions (instruction tuning) sur un LLM Qwen pour la compréhension fine de terminologies et textes financiers spécialisés.",
-    skills: [{ name: "Qwen LLM" }, { name: "Instruction Tuning" }, { name: "Python" }, { name: "PyTorch" }],
+    skills: ["Qwen LLM", "Instruction Tuning", "Python", "PyTorch"],
     github: "https://github.com/intissar127",
-    icon: <Sparkles size={22} />
+    icon: <Sparkles size={20} />
   },
   {
     id: 7,
     category: "Explainable AI",
     title: "Benchmarking d'Explicabilité XAI",
     description: "Framework de benchmarking reproductible comparant SHAP et LIME sur 7 datasets tabulaires et 9 familles de modèles (66 configurations). Tableau de bord Next.js, PostgreSQL et DVC.",
-    skills: [{ name: "SHAP/LIME" }, { name: "Next.js" }, { name: "PostgreSQL" }, { name: "DVC" }],
+    skills: ["SHAP/LIME", "Next.js", "PostgreSQL", "DVC"],
     github: "https://github.com/intissar127",
-    icon: <ShieldCheck size={22} />
-  },
-  {
-    id: 6,
-    category: "E-Commerce & IA",
-    title: "Hlou Shahrazad & E-commerce IA",
-    description: "Plateforme de haute pâtisserie tunisienne avec Next.js 16, TypeScript, Supabase et intégration d'un chatbot intelligent propulsé par Gemini 2.5 Flash.",
-    skills: [{ name: "Next.js 16" }, { name: "TypeScript" }, { name: "Supabase" }, { name: "Gemini API" }],
-    github: "https://github.com/intissar127/hlou-shahrazad",
-    icon: <ShoppingBag size={22} />
-  },
-  {
-    id: 5,
-    category: "Full-Stack",
-    title: "Soutenancia",
-    description: "Système complet de gestion des soutenances : planification intelligente des créneaux, affectation automatisée des jurys et calcul dynamique des résultats sous Spring Boot et Next.js.",
-    skills: [{ name: "Spring Boot" }, { name: "Next.js" }, { name: "PostgreSQL" }, { name: "Docker" }],
-    github: "https://github.com/intissar127/soutenancia",
-    icon: <CalendarCheck size={22} />
+    icon: <ShieldCheck size={20} />
   }
 ];
 
@@ -125,55 +103,62 @@ export default function Portfolio() {
     : projects.filter(p => p.category === filter || (filter === 'IA & Recherche' && p.category.includes('IA')));
 
   return (
-    <div className="min-h-screen bg-[#030712] font-sans text-slate-100 selection:bg-[#00ffff] selection:text-black">
+    <div className="min-h-screen bg-[#02040a] font-sans text-slate-100 selection:bg-[#00ffff] selection:text-black overflow-x-hidden">
       
-      {/* --- TOP BAR NAVIGATION --- */}
-      <nav className="fixed top-0 w-full z-50 px-6 lg:px-16 py-4 flex justify-between items-center backdrop-blur-md bg-[#030712]/80 border-b border-white/5">
+      {/* --- FLOATING TECH HEADER --- */}
+      <header className="fixed top-0 w-full z-50 px-6 lg:px-12 py-4 flex justify-between items-center backdrop-blur-xl bg-[#02040a]/80 border-b border-white/10">
         <div className="flex items-center gap-3">
-          <div className="h-2.5 w-2.5 rounded-none bg-[#00ffff] animate-pulse" />
-          <span className="text-sm font-mono tracking-widest text-white uppercase font-bold">
+          <div className="w-3 h-3 bg-[#00ffff] rounded-none animate-ping" />
+          <span className="font-mono text-sm tracking-widest font-black uppercase text-white">
             INTISSAR<span className="text-[#00ffff]">.MASSAOUD</span>
           </span>
         </div>
-        <div className="hidden md:flex gap-10 text-xs font-mono uppercase tracking-widest text-slate-400">
-          <a href="#projets" className="hover:text-[#00ffff] transition-colors">01 // Projets</a>
-          <a href="#expertise" className="hover:text-[#00ffff] transition-colors">02 // Expertise</a>
-          <a href="#contact" className="hover:text-[#00ffff] transition-colors">03 // Contact</a>
+        
+        <div className="hidden md:flex items-center gap-8 font-mono text-xs tracking-widest text-slate-400">
+          <a href="#projets" className="hover:text-[#00ffff] transition-colors">// PROJETS</a>
+          <a href="#expertise" className="hover:text-[#00ffff] transition-colors">// EXPERTISE</a>
+          <a href="#contact" className="hover:text-[#00ffff] transition-colors">// CONTACT</a>
         </div>
+
         <a 
           href="mailto:messoudintissar127@gmail.com" 
-          className="px-4 py-2 bg-transparent border border-[#00ffff]/40 text-[#00ffff] font-mono text-xs uppercase tracking-wider hover:bg-[#00ffff] hover:text-black transition-all"
+          className="px-4 py-2 bg-[#00ffff]/10 border border-[#00ffff]/40 text-[#00ffff] font-mono text-xs font-bold uppercase tracking-wider hover:bg-[#00ffff] hover:text-black transition-all shadow-[0_0_20px_rgba(0,255,255,0.15)]"
         >
-          [ PFE 2026 ]
+          [ PFE 2027 ][cite: 1]
         </a>
-      </nav>
+      </header>
 
-      {/* --- HERO SECTION (BRUTALIST-BENTO LAYOUT) --- */}
-      <section className="relative min-h-screen pt-32 pb-20 px-6 lg:px-16 max-w-7xl mx-auto flex flex-col justify-center">
+      {/* --- HERO SECTION: ASYMMETRIC SPLIT MAG-STYLE --- */}
+      <section className="relative min-h-screen pt-32 pb-20 px-6 lg:px-12 max-w-7xl mx-auto flex flex-col justify-center">
         <HeroBackground />
 
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Hero Main Block */}
-          <div className="lg:col-span-8 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 text-[#00ffff] font-mono text-xs tracking-wider uppercase">
-              <GraduationCap size={14} />
-              <span>Recherche Stage PFE • Élève Ingénieur ISIMS Sfax</span>
+          {/* Left Column: Bold Typography & Actions */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7 space-y-8"
+          >
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-white/[0.03] border border-[#00ffff]/30 text-[#00ffff] font-mono text-xs tracking-widest uppercase">
+              <GraduationCap size={15} />
+              <span>RECHERCHE STAGE PFE 2027 • ÉLÈVE INGÉNIEUR ISIMS SFAX</span>[cite: 1]
             </div>
 
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-[0.9]">
-              AI & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00ffff] via-[#3b82f6] to-[#8b5cf6]">SOFTWARE</span> ARCHITECT.
+              AI <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00ffff] via-[#3b82f6] to-[#a855f7]">&</span> SOFT <br />
+              ARCHITECT.
             </h1>
 
-            <p className="max-w-xl text-slate-400 text-sm sm:text-base font-normal leading-relaxed">
-              Conception de systèmes intelligents robustes, fine-tuning de modèles multilingues (Whisper, Qwen), pipelines RAG avancés et plateformes full-stack hautement scalables.
+            <p className="max-w-xl text-slate-300 text-base lg:text-lg font-normal leading-relaxed border-l-2 border-[#00ffff] pl-4 bg-gradient-to-r from-[#00ffff]/5 to-transparent py-2">
+              Élève ingénieure spécialisée en IA et Systèmes Logiciels. Je conçois des architectures full-stack robustes, des pipelines RAG, des modèles multilingues Whisper/Qwen et des benchmarks XAI reproductibles.
             </p>
 
-            {/* Action Buttons: Updated with correct email contact & restored CV button */}
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-wrap gap-4 pt-2">
               <a 
                 href="mailto:messoudintissar127@gmail.com" 
-                className="px-6 py-3.5 bg-[#00ffff] text-black font-mono text-xs font-bold uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2 shadow-lg shadow-[#00ffff]/20"
+                className="px-7 py-4 bg-[#00ffff] text-black font-mono text-xs font-black uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2 shadow-[0_0_30px_rgba(0,255,255,0.3)]"
               >
                 <Mail size={16} /> Discuter PFE <ArrowRight size={16} />
               </a>
@@ -181,43 +166,55 @@ export default function Portfolio() {
                 href="/CV_Intissar_Massaoud.pdf" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="px-6 py-3.5 bg-transparent border border-white/20 text-white font-mono text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2"
+                className="px-7 py-4 bg-transparent border border-white/20 text-white font-mono text-xs font-black uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2 backdrop-blur-md"
               >
                 <FileText size={16} /> Consulter mon CV
               </a>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Hero Profile Bento Card */}
-          <div className="lg:col-span-4">
-            <div className="p-4 bg-white/[0.02] border border-white/10 relative group">
-              <div className="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-[#00ffff]" />
-              <div className="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-[#00ffff]" />
-              
-              <div className="aspect-[4/5] overflow-hidden relative mb-4">
-                <img 
-                  src="/img/photo-intissar.jpg" 
-                  alt="Intissar Massaoud" 
-                  className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700"
-                />
-              </div>
+          {/* Right Column: Unique Brutalist Cyber Frame & Photo */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }} 
+            animate={{ opacity: 1, scale: 1 }} 
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-5 flex justify-center"
+          >
+            <div className="relative w-full max-w-sm">
+              {/* Cyber decorative corner frames */}
+              <div className="absolute -top-3 -left-3 w-8 h-8 border-t-2 border-l-2 border-[#00ffff] z-10" />
+              <div className="absolute -bottom-3 -right-3 w-8 h-8 border-b-2 border-r-2 border-[#00ffff] z-10" />
 
-              <div className="font-mono text-xs space-y-1">
-                <p className="text-white font-bold uppercase">Intissar Massaoud</p>
-                <p className="text-[#00ffff]">Moknine, Monastir, Tunisie</p>
+              <div className="p-4 bg-white/[0.02] border border-white/15 backdrop-blur-xl relative shadow-2xl">
+                <div className="relative aspect-[4/5] overflow-hidden filter grayscale contrast-125 hover:grayscale-0 transition-all duration-700">
+                  <img 
+                    src="/img/photo-intissar.jpg" 
+                    alt="Intissar Massaoud" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-transparent opacity-60" />
+                </div>
+
+                <div className="mt-4 pt-4 border-t border-white/10 flex justify-between items-center font-mono text-xs">
+                  <div>
+                    <p className="text-white font-bold uppercase">Intissar Massaoud</p>
+                    <p className="text-[#00ffff] text-[10px]">Moknine, Monastir, Tunisie</p>
+                  </div>
+                  <Terminal size={18} className="text-[#00ffff]" />
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </section>
 
-      {/* --- PROJECTS SECTION (ASYMMETRIC BENTO GRID) --- */}
-      <section id="projets" className="py-28 px-6 lg:px-16 max-w-7xl mx-auto border-t border-white/5">
+      {/* --- PROJECTS SECTION: MAGAZINE BENTO GRID --- */}
+      <section id="projets" className="py-28 px-6 lg:px-12 max-w-7xl mx-auto border-t border-white/10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <span className="font-mono text-[#00ffff] text-xs uppercase tracking-widest block mb-2">// 01. RÉALISATIONS</span>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase">Projets & R&D</h2>
+            <span className="font-mono text-[#00ffff] text-xs uppercase tracking-widest block mb-2">// SECTION 01</span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase">Projets & R&D IA</h2>
           </div>
 
           <div className="flex flex-wrap gap-2 font-mono text-xs">
@@ -225,9 +222,9 @@ export default function Portfolio() {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-4 py-2 border transition-all uppercase tracking-wider ${
+                className={`px-5 py-2.5 border transition-all uppercase tracking-wider ${
                   filter === cat 
-                    ? 'bg-[#00ffff] text-black border-[#00ffff] font-bold' 
+                    ? 'bg-[#00ffff] text-black border-[#00ffff] font-black shadow-[0_0_15px_rgba(0,255,255,0.2)]' 
                     : 'bg-transparent text-slate-400 border-white/10 hover:border-white/30'
                 }`}
               >
@@ -237,31 +234,31 @@ export default function Portfolio() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           <AnimatePresence>
             {filteredProjects.map((project, index) => (
               <motion.div 
                 key={project.id} 
-                initial={{ opacity: 0, y: 15 }} 
+                initial={{ opacity: 0, y: 20 }} 
                 whileInView={{ opacity: 1, y: 0 }} 
                 viewport={{ once: true }} 
-                transition={{ delay: index * 0.05 }} 
-                className="p-8 bg-white/[0.01] border border-white/10 hover:border-[#00ffff]/50 transition-all flex flex-col justify-between group relative"
+                transition={{ delay: index * 0.08 }} 
+                className="p-8 bg-white/[0.015] border border-white/10 hover:border-[#00ffff]/60 transition-all flex flex-col justify-between group relative"
               >
                 <div>
                   <div className="flex justify-between items-start mb-6">
-                    <div className="p-3 bg-white/5 border border-white/10 text-[#00ffff] group-hover:bg-[#00ffff] group-hover:text-black transition-all">
+                    <div className="p-3.5 bg-white/5 border border-white/10 text-[#00ffff] group-hover:bg-[#00ffff] group-hover:text-black transition-all">
                       {project.icon}
                     </div>
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400 px-2.5 py-1 bg-white/5 border border-white/10">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-slate-300 px-3 py-1 bg-white/5 border border-white/10">
                       {project.category}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-3 group-hover:text-[#00ffff] transition-colors">
+                  <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-3 group-hover:text-[#00ffff] transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-slate-400 text-xs leading-relaxed mb-6">
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6">
                     {project.description}
                   </p>
                 </div>
@@ -269,15 +266,15 @@ export default function Portfolio() {
                 <div>
                   <div className="flex flex-wrap gap-1.5 mb-6">
                     {project.skills.map((skill, sIdx) => (
-                      <span key={sIdx} className="font-mono text-[9px] uppercase tracking-wider text-slate-300 bg-white/5 border border-white/10 px-2 py-0.5">
-                        {skill.name}
+                      <span key={sIdx} className="font-mono text-[10px] uppercase tracking-wider text-slate-300 bg-white/5 border border-white/10 px-2.5 py-1">
+                        {skill}
                       </span>
                     ))}
                   </div>
 
                   {project.github && (
                     <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-slate-400 hover:text-white transition-colors">
-                      <GitBranch size={14} /> Repository <ExternalLink size={12} />
+                      <GitBranch size={16} /> Repository GitHub <ExternalLink size={14} />
                     </a>
                   )}
                 </div>
@@ -287,29 +284,29 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* --- EXPERTISE & 3D GLOBE --- */}
-      <section id="expertise" className="py-28 px-6 lg:px-16 max-w-7xl mx-auto border-t border-white/5">
+      {/* --- EXPERTISE & 3D GLOBE SECTION --- */}
+      <section id="expertise" className="py-28 px-6 lg:px-12 max-w-7xl mx-auto border-t border-white/10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
           <div className="space-y-6">
-            <span className="font-mono text-[#00ffff] text-xs uppercase tracking-widest block">// 02. EXPERTISE TECHNIQUE</span>
+            <span className="font-mono text-[#00ffff] text-xs uppercase tracking-widest block">// SECTION 02</span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase">
               Rigueur & Stack <br />Industrielle.
             </h2>
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed">
+            <p className="text-slate-400 text-base leading-relaxed">
               De l'expérimentation LLM sur GPU au déploiement de conteneurs Docker et tableaux de bord Next.js, j'assure la reproductibilité et la robustesse de chaque pipeline.
             </p>
 
             <div className="grid grid-cols-2 gap-3 pt-2">
               {['Python / PyTorch', 'FastAPI / Flask', 'React / Next.js', 'PostgreSQL / Supabase', 'Docker / DVC / MLflow', 'Java / Spring Boot'].map(tech => (
-                <div key={tech} className="p-3 bg-white/[0.02] border border-white/10 font-mono text-xs uppercase tracking-wider flex items-center gap-2 text-slate-200">
+                <div key={tech} className="p-3.5 bg-white/[0.02] border border-white/10 font-mono text-xs uppercase tracking-wider flex items-center gap-3 text-slate-200">
                   <div className="w-1.5 h-1.5 bg-[#00ffff]" /> {tech}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="h-[380px] w-full relative flex items-center justify-center border border-white/10 bg-white/[0.01]">
+          <div className="h-[400px] w-full relative flex items-center justify-center border border-white/10 bg-white/[0.01]">
             <Canvas camera={{ position: [0, 0, 5] }}>
               <ambientLight intensity={0.6} />
               <pointLight position={[10, 10, 10]} />
@@ -320,27 +317,29 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* --- CONTACT PFE SECTION --- */}
-      <section id="contact" className="py-32 px-6 lg:px-16 max-w-5xl mx-auto text-center border-t border-white/5">
-        <div className="p-12 md:p-20 bg-white/[0.01] border border-white/10 relative overflow-hidden">
-          <span className="font-mono text-[#00ffff] text-xs uppercase tracking-widest block mb-4">// 03. CONTACT DIRECT</span>
+      {/* --- CONTACT SECTION --- */}
+      <section id="contact" className="py-32 px-6 lg:px-12 max-w-5xl mx-auto text-center border-t border-white/10">
+        <div className="p-12 md:p-20 bg-white/[0.01] border border-white/15 relative overflow-hidden shadow-2xl">
+          <div className="absolute top-0 right-0 w-48 h-48 bg-[#00ffff]/10 rounded-full blur-3xl pointer-events-none" />
+          
+          <span className="font-mono text-[#00ffff] text-xs uppercase tracking-widest block mb-4">// SECTION 03</span>
           <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight mb-6">
-            Discutons de votre sujet PFE.
+            Discutons de votre sujet PFE 2027.
           </h2>
-          <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto mb-10">
-            Je suis à la recherche d'un stage de fin d'études stimulant pour la période 2026/2027 en IA ou Ingénierie Logicielle. Écrivez-moi directement :
+          <p className="text-slate-400 text-base max-w-xl mx-auto mb-10">
+            Vous recherchez une élève ingénieure motivée et spécialisée en IA / Logiciel pour un PFE à fort impact ? Contactez-moi directement :
           </p>
 
           <a 
             href="mailto:messoudintissar127@gmail.com" 
-            className="inline-flex items-center gap-3 px-8 py-4 bg-[#00ffff] text-black font-mono text-xs font-bold uppercase tracking-widest hover:bg-white transition-all shadow-xl shadow-[#00ffff]/20"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#00ffff] text-black font-mono text-xs font-black uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_30px_rgba(0,255,255,0.3)]"
           >
             <Mail size={16} /> messoudintissar127@gmail.com <ArrowRight size={16} />
           </a>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] uppercase tracking-widest text-slate-500">
-          <p>© 2026 Intissar Massaoud • Moknine, Tunisie</p>
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-xs uppercase tracking-widest text-slate-500">
+          <p>© 2026 Intissar Massaoud • Moknine, Monastir, Tunisie</p>
           <div className="flex gap-6">
             <a href="https://github.com/intissar127" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a>
             <a href="https://www.linkedin.com/in/massaoud-intissar-789417250/" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
