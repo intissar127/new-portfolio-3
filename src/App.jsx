@@ -219,7 +219,7 @@ export default function Portfolio() {
             transition={{ delay: 0.2 }} 
             className="max-w-2xl mx-auto lg:mx-0 text-sm md:text-lg text-slate-400 font-medium leading-relaxed"
           >
-            Élève ingénieure en logiciels à l'ISIMS Sfax. Je conçois des architectures full-stack robustes, des pipelines RAG, des modèles multilingues Whisper/Qwen et des benchmarks XAI reproductibles.
+            Élève ingénieure en génie logiciel à l'ISIMS Sfax. Je conçois des architectures full-stack robustes, des pipelines RAG, des modèles multilingues Whisper/Qwen et des benchmarks XAI reproductibles.
           </motion.p>
 
           <motion.div 
